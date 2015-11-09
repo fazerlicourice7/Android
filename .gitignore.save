@@ -26,6 +26,13 @@ proguard/
 # Log Files
 *.log
 
-#idea? stuff
-.idea/workspace.xml
-.idea/libraries
+#vi swap files
+*.swp
+
+#backup files
+*.bak
+
+#gradle directory
+.gradle
+build/
+
