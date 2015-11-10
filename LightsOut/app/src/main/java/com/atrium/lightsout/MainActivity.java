@@ -31,7 +31,6 @@ public class MainActivity extends Activity {
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //start(View v);
                 Intent intent = new Intent(MainActivity.this, GameActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
@@ -39,14 +38,6 @@ public class MainActivity extends Activity {
             }
         });
     }
-
-    /*
-    public void start(View v) {
-        Intent i = new Intent(this, GameActivity.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(i);
-        finish();
-    }*/
 }
 
 
