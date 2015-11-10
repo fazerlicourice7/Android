@@ -36,3 +36,8 @@ proguard/
 .gradle
 build/
 
+# idea files
+.idea/*
+idea/workspace.xml
+.idea/misc
+.idea/libraries
