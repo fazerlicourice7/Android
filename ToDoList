@@ -5,4 +5,7 @@
 5. quit button on end screen
 6. Background music
 7. Game Modes
-8.
+
+
+NOTE: px = dp * (dpi / 160)
+Formula that relates pixels, density-independent pixels and dpi
