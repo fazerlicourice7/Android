@@ -16,7 +16,6 @@ public class GameActivity extends Activity {
         super.onCreate(savedInstanceState);
         mySurfaceView = new AnimatedSurface(this);
         setContentView(mySurfaceView);
-
     }
 
     @Override

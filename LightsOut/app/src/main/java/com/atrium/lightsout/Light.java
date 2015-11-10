@@ -7,9 +7,11 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
+import static com.atrium.lightsout.AnimatedSurface.dpPxFactor;
+
 
 public class Light {
-    int width = 242; //242 for 1440p find dp
+    int width = (68 * dpPxFactor);
     int x;
     int y;
     Bitmap imageOn;
@@ -18,7 +20,6 @@ public class Light {
     Rect dst = new Rect();
     Context context;
 
-    AnimatedSurface mySurfaceView;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
 
@@ -28,7 +29,7 @@ public class Light {
         context = xcontext;
         currentImage = stateIn;
 
-        dst.set(x, y, x+242, y+242); //for 1440p display
+        dst.set(x, y, x + (68 * dpPxFactor), y + (68 * dpPxFactor));
         imageOn = BitmapFactory.decodeResource(context.getResources(), R.drawable.lightbuttonon);
         imageOff = BitmapFactory.decodeResource(context.getResources(), R.drawable.lightbuttonoff);
     }
@@ -55,15 +56,15 @@ public class Light {
         y = yy;
     }
 
-    public boolean getState(){
+    public boolean getState() {
         return currentImage;
     }
 
     public void draw(Canvas c) {
-        if(!currentImage) {
+        if (!currentImage) {
             c.drawBitmap(imageOn, null, dst, paint);
         }
-        if(currentImage) {
+        if (currentImage) {
 
             c.drawBitmap(imageOff, null, dst, paint);
         }

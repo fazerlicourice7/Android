@@ -33,7 +33,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
     int screenH = 0;
     int screenW = 0;
     int screenDensity;
-    int dpPxFactor;
+    static int dpPxFactor;
     Bitmap gameBackground;
 
     Paint sharedPaint = new Paint(Paint.ANTI_ALIAS_FLAG); //A shared paint object
@@ -53,17 +53,16 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
         this.context = context;
         // TODO Auto-generated constructor stub
         surfaceHolder = getHolder();
-        //backgroundSize.set(0, 0, 2560, 1440);
         screenDensity = getResources().getDisplayMetrics().densityDpi;
         dpPxFactor = screenDensity / 160;
-        int y = (11 * dpPxFactor); // 38px for 2560x1440
+        int y = (11 * dpPxFactor); //
         for (int i = 0; i < 5; i++) {
-            int x = (165 * dpPxFactor);//583px for 2560x1440
+            int x = (165 * dpPxFactor);//
             for (int j = 0; j < 5; j++) {
                 buttonArray[i][j] = new Light(x, y, context, true);
-                x += (79 * dpPxFactor);// x+=280px for 2560x1440
+                x += (79 * dpPxFactor);//
             }
-            y += (79 * dpPxFactor);//y+=280 for 2560x1440
+            y += (79 * dpPxFactor);//
         }
         int number = 0;
         //while (number < 5) {
@@ -89,7 +88,6 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
             try {
                 buttonArray[x2][y2 - 1].onHit();
             } catch (IndexOutOfBoundsException exc) {
-
             }
         }
         gameBackground = BitmapFactory.decodeResource(getResources(), R.drawable.gamebackground);
@@ -138,7 +136,6 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
 
                 frames++;
                 int seconds = (int) ((System.currentTimeMillis() - startTime) / 1000);
-
                 if (seconds > 60) {
                     minutes++;
                     startTime = System.currentTimeMillis();
@@ -150,6 +147,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
                     time = String.valueOf(minutes) + ":" + String.valueOf(seconds);
                 }
                 //Drawing stationary objects.
+
                 //clearScreen(canvas);
                 drawBackground(canvas);
                 //Candle.Pulse(54,423,canvas);
@@ -191,11 +189,10 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
     public void drawText(Canvas c, String text, int x, int y, int size) {
         Paint pen = new Paint(Paint.LINEAR_TEXT_FLAG);
         pen.setStyle(Paint.Style.FILL);
-        pen.setStrokeWidth(5);
+        pen.setStrokeWidth(2 * dpPxFactor);
         pen.setColor(Color.BLACK);
         pen.setTypeface(Typeface.SANS_SERIF);
         pen.setTextSize(size);
-
         c.drawText(text, x, y, pen);
     }
 

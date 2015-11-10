@@ -3,6 +3,7 @@ package com.atrium.lightsout;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import static com.atrium.lightsout.AnimatedSurface.dpPxFactor;
 
 /**
  * Created by elija_000 on 11/7/2015.
@@ -31,6 +32,6 @@ public class candle {
                 candleLight.setAlpha(alpha--);
             }
         }
-        c.drawCircle(x, y, 110, candleLight);
+        c.drawCircle(x, y, (31 * dpPxFactor), candleLight);
     }
 }
