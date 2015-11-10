@@ -51,15 +51,15 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
         this.context = context;
         // TODO Auto-generated constructor stub
         surfaceHolder = getHolder();
-        backgroundSize.set(0, 0, 2560, 1440);
-        int y = 38;
+        //backgroundSize.set(0, 0, 2560, 1440);
+        int y = 38; // 38px for 2560x1440
         for (int i = 0; i < 5; i++) {
-            int x = 583;
+            int x = 583;//583px for 2560x1440
             for (int j = 0; j < 5; j++) {
                 buttonArray[i][j] = new Light(x, y, context, true);
-                x += 280;
+                x += 280;// x+=280px for 2560x1440
             }
-            y += 280;
+            y += 280;//y+=280 for 2560x1440
         }
         int number = 0;
         while (number < 5) {
@@ -130,6 +130,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
                 Canvas canvas = surfaceHolder.lockCanvas();
                 screenH = canvas.getHeight();
                 screenW = canvas.getWidth();
+                backgroundSize.set(0,0,screenW,screenH);
 
                 frames++;
                 int seconds = (int) ((System.currentTimeMillis() - startTime) / 1000);
@@ -145,11 +146,11 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
                     time = String.valueOf(minutes) + ":" + String.valueOf(seconds);
                 }
                 //Drawing stationary objects.
-                clearScreen(canvas);
+                //clearScreen(canvas);
                 drawBackground(canvas);
                 //candle1.Pulse(54,423,canvas);
                 //candle1.Pulse(97,504,canvas);
-                drawText(canvas, time, 50, 200, 200);
+                drawText(canvas, time, 50, 200, 200); //50px,200px,200px for 2560x1440 display
                 boolean done = true;
 
                 for (int i = 0; i < 5; i++) {
@@ -246,6 +247,8 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
     public int[] inLight(int x, int y) {
         int row = -1;
         int col = -1;
+        //px values for 2560x1440 display
+        // px = dp * (dpi / 160) Formula relating pixels, dpi and dp => calculate dp for everything
         if (x > 583 && x < 863)
             col = 0;
         else if (x > 863 && x < 1143)

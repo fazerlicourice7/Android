@@ -9,7 +9,7 @@ import android.graphics.Rect;
 
 
 public class Light {
-    int width = 242;
+    int width = 242; //242 for 1440p find dp
     int x;
     int y;
     Bitmap imageOn;
@@ -28,7 +28,7 @@ public class Light {
         context = xcontext;
         currentImage = stateIn;
 
-        dst.set(x, y, x+242, y+242);
+        dst.set(x, y, x+242, y+242); //for 1440p display
         imageOn = BitmapFactory.decodeResource(context.getResources(), R.drawable.lightbuttonon);
         imageOff = BitmapFactory.decodeResource(context.getResources(), R.drawable.lightbuttonoff);
     }
