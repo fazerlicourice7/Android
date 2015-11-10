@@ -21,7 +21,7 @@ import java.util.Random;
  */
 public class AnimatedSurface extends SurfaceView implements Runnable {
     //Instance variables
-    candle candle1 = new candle();
+    candle Candle = new candle();
 
     Context context;
     MediaPlayer buttonClickSound;
@@ -148,8 +148,8 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
                 //Drawing stationary objects.
                 //clearScreen(canvas);
                 drawBackground(canvas);
-                //candle1.Pulse(54,423,canvas);
-                //candle1.Pulse(97,504,canvas);
+                //Candle.Pulse(54,423,canvas);
+                //Candle.Pulse(97,504,canvas);
                 drawText(canvas, time, 50, 200, 200); //50px,200px,200px for 2560x1440 display
                 boolean done = true;
 

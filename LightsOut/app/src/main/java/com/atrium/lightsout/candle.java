@@ -19,7 +19,7 @@ public class candle {
     public void Pulse(int x, int y, Canvas c){
         int alpha = 0;
         boolean increase = true;
-        if(AnimatedSurface.frames%10 == 0) {
+        if(AnimatedSurface.frames%5 == 0) {
             if(alpha < 0){
                 increase = true;
             } else if(alpha > 30){
