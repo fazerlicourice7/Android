@@ -10,6 +10,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -32,7 +33,6 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
     static int frames = 0;
     int screenH = 0;
     int screenW = 0;
-    int screenDensity;
     static int dpPxFactor;
     Bitmap gameBackground;
 
@@ -53,16 +53,16 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
         this.context = context;
         // TODO Auto-generated constructor stub
         surfaceHolder = getHolder();
-        screenDensity = getResources().getDisplayMetrics().densityDpi;
-        dpPxFactor = screenDensity / 160;
-        int y = (11 * dpPxFactor); //
+        dpPxFactor = (int) getResources().getDisplayMetrics().density;
+        Log.d("Screen Density", String.valueOf(dpPxFactor));
+        int y = (13 * dpPxFactor); //
         for (int i = 0; i < 5; i++) {
-            int x = (165 * dpPxFactor);//
+            int x = (174 * dpPxFactor);//
             for (int j = 0; j < 5; j++) {
                 buttonArray[i][j] = new Light(x, y, context, true);
-                x += (79 * dpPxFactor);//
+                x += (80 * dpPxFactor);//
             }
-            y += (79 * dpPxFactor);//
+            y += (80 * dpPxFactor);//
         }
         int number = 0;
         //while (number < 5) {
@@ -98,6 +98,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
      * This method (re)starts the animation Thread when this Surface resumes.
      */
     public void onResumeMySurfaceView() {
+        buttonClickSound = MediaPlayer.create(context, R.raw.buttonpressedsound);
         running = true;
         thread = new Thread(this);
         thread.start();
@@ -109,6 +110,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
     public void onPauseMySurfaceView() {
         boolean retry = true;
         running = false;
+        buttonClickSound.release();
         while (retry) {
             try {
                 thread.join();
@@ -132,6 +134,8 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
                 Canvas canvas = surfaceHolder.lockCanvas();
                 screenH = canvas.getHeight();
                 screenW = canvas.getWidth();
+                Log.d("Height", String.valueOf(screenH));
+                Log.d("Width", String.valueOf(screenW));
                 backgroundSize.set(0, 0, screenW, screenH);
 
                 frames++;
@@ -152,11 +156,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
                 drawBackground(canvas);
                 //Candle.Pulse(54,423,canvas);
                 //Candle.Pulse(97,504,canvas);
-                int dpx = 14; //dip for the x coordinate of the time
-                int dpy = 57; //dip for the y coordinate of the time
-                int dpSize = 57; // dip for the size of the time
-                int pxX = dpx * dpPxFactor, pxY = dpy * dpPxFactor, pxSize = dpSize * dpPxFactor;
-                drawText(canvas, time, pxX, pxY, pxSize); //50px,200px,200px for 2560x1440 display
+                drawText(canvas, time, (14 *dpPxFactor), (57 * dpPxFactor), (57*dpPxFactor)); //50px,200px,200px for 2560x1440 display
                 boolean done = true;
                 for (int i = 0; i < 5; i++) {
                     for (int j = 0; j < 5; j++) {
@@ -243,7 +243,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
 
 
     public void gameOver(String time) {
-        Intent intent = new Intent(context, SecondActivity.class);
+        Intent intent = new Intent(context, gameOverActivity.class);
         intent.putExtra("scoreMSG", time);
         context.startActivity(intent);
     }
