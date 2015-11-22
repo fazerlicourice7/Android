@@ -55,13 +55,17 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
         surfaceHolder = getHolder();
         dpPxFactor = (int) getResources().getDisplayMetrics().density;
         Log.d("Screen Density", String.valueOf(dpPxFactor));
-        int y = (13 * dpPxFactor); //
+        //int y = ;
+        int y = (int)(11 * dpPxFactor); //
         for (int i = 0; i < 5; i++) {
-            int x = (174 * dpPxFactor);//
+            //int x = ;
+            int x = (int)(165 * dpPxFactor);//
             for (int j = 0; j < 5; j++) {
                 buttonArray[i][j] = new Light(x, y, context, true);
+                //x+= ;
                 x += (80 * dpPxFactor);//
             }
+            //y+= ;
             y += (80 * dpPxFactor);//
         }
         int number = 0;
@@ -140,7 +144,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
 
                 frames++;
                 int seconds = (int) ((System.currentTimeMillis() - startTime) / 1000);
-                if (seconds > 60) {
+                if (seconds > 59) {
                     minutes++;
                     startTime = System.currentTimeMillis();
                 }
@@ -152,11 +156,10 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
                 }
                 //Drawing stationary objects.
 
-                //clearScreen(canvas);
                 drawBackground(canvas);
                 //Candle.Pulse(54,423,canvas);
                 //Candle.Pulse(97,504,canvas);
-                drawText(canvas, time, (14 *dpPxFactor), (57 * dpPxFactor), (57*dpPxFactor)); //50px,200px,200px for 2560x1440 display
+                drawText(canvas, time, (4 *dpPxFactor), (43 * dpPxFactor), (57 *dpPxFactor)); //50px,200px,200px for 2560x1440 display
                 boolean done = true;
                 for (int i = 0; i < 5; i++) {
                     for (int j = 0; j < 5; j++) {
@@ -191,6 +194,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
         pen.setStyle(Paint.Style.FILL);
         pen.setStrokeWidth(2 * dpPxFactor);
         pen.setColor(Color.BLACK);
+        pen.setTextAlign(Paint.Align.LEFT);
         pen.setTypeface(Typeface.SANS_SERIF);
         pen.setTextSize(size);
         c.drawText(text, x, y, pen);
@@ -252,28 +256,27 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
     public int[] inLight(int x, int y) {
         int row = -1;
         int col = -1;
-        //px values for 2560x1440 display
         // px = dp * (dpi / 160) Formula relating pixels, dpi and dp => calculate dp for everything
-        if (x > (165 * dpPxFactor) && x < (244 * dpPxFactor))
+        if (x > (165 * dpPxFactor) && x < (245 * dpPxFactor))
             col = 0;
-        else if (x > (244 * dpPxFactor) && x < (324 * dpPxFactor))
+        else if (x > (245 * dpPxFactor) && x < (325 * dpPxFactor))
             col = 1;
-        else if (x > (324 * dpPxFactor) && x < (402 * dpPxFactor))
+        else if (x > (325 * dpPxFactor) && x < (405 * dpPxFactor))
             col = 2;
-        else if (x > (402 * dpPxFactor) && x < (482 * dpPxFactor))
+        else if (x > (405 * dpPxFactor) && x < (485 * dpPxFactor))
             col = 3;
-        else if (x > (482 * dpPxFactor) && x < (562 * dpPxFactor))
+        else if (x > (485 * dpPxFactor) && x < (565 * dpPxFactor))
             col = 4;
 
-        if (y > (11 * dpPxFactor) && y < (90 * dpPxFactor))
+        if (y > (11 * dpPxFactor) && y < (91 * dpPxFactor))
             row = 0;
-        else if (y > (90 * dpPxFactor) && y < (169 * dpPxFactor))
+        else if (y > (91 * dpPxFactor) && y < (171 * dpPxFactor))
             row = 1;
-        else if (y > (169 * dpPxFactor) && y < (249 * dpPxFactor))
+        else if (y > (171 * dpPxFactor) && y < (251 * dpPxFactor))
             row = 2;
-        else if (y > (249 * dpPxFactor) && y < (328 * dpPxFactor))
+        else if (y > (251 * dpPxFactor) && y < (331 * dpPxFactor))
             row = 3;
-        else if (y > (328 * dpPxFactor) && y < (407 * dpPxFactor))
+        else if (y > (331 * dpPxFactor) && y < (411 * dpPxFactor))
             row = 4;
 
         int[] location = new int[2];
