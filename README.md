@@ -1,2 +1,2 @@
-# LightsOut
-An Android version of the classic lights out game
+# Android Projects
+A repository of all my Android Projects.
