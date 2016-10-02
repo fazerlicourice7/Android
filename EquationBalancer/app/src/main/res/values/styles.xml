@@ -1,17 +1,20 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppThemeLight" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppThemeLight" parent="android:Theme.Material.Light">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#ffffff</item>
         <item name="colorPrimaryText">#000000</item>
-        <item name="colorAccent">#ff0000</item>
+        <item name="colorAccent">#d50000</item>
+        <item name="colorButtonNormal">#880e4f</item>
+        <item name="android:colorAccent">@color/accent_material_light</item>
     </style>
 
-    <style name="AppThemeDark" parent="Base.ThemeOverlay.AppCompat.Dark">
+    <style name="AppThemeDark" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#000000</item>
         <item name="colorPrimaryText">#ffffff</item>
-        <item name="colorAccent">#ff0000</item>
+        <item name="colorAccent">#d50000</item>
+        <item name="colorButtonNormal">#880e4f</item>
     </style>
 </resources>

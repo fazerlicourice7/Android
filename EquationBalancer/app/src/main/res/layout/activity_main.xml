@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?colorPrimary"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -25,30 +26,35 @@
 
         <Button
             android:id="@+id/darkThemeButton"
-            style="@style/Widget.AppCompat.Button.Colored"
+            style="@android:style/Widget.Material.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:layout_weight="1"
             android:onClick="setThemeDark"
-            android:text="Dark" />
+            android:text="Dark"
+            android:textColor="?colorPrimaryText" />
 
         <Button
             android:id="@+id/lightThemeButton"
-            style="@style/Widget.AppCompat.Button.Colored"
+            style="@android:style/Widget.Material.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:layout_weight="1"
             android:onClick="setThemeLight"
-            android:text="Light" />
+            android:text="Light"
+            android:textColor="?colorPrimaryText" />
     </LinearLayout>
 
+    <!-- style="@style/Widget.AppCompat.Button.Colored" -->
     <Button
         android:id="@+id/startButton"
-        style="@style/Widget.AppCompat.Button.Colored"
+        style="@android:style/Widget.Material.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="Start" />
+        android:onClick="newAct"
+        android:text="Start"
+        android:textColor="?colorPrimaryText" />
 </LinearLayout>

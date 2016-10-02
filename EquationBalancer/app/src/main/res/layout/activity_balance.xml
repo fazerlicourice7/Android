@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.a18balanagav.equationbalancer.MainActivity">
+    tools:context=".BalanceActivity">
 
     <TextView
         android:id="@+id/arrow"
@@ -19,16 +19,6 @@
         android:textSize="40sp"
         android:textColor="?colorPrimaryText"
         android:layout_centerInParent="true" />
-
-    <Button
-        android:text="Balance"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:id="@+id/balanceButton"
-        android:layout_alignBottom="@id/arrow"
-        android:layout_centerHorizontal="true" />
 
     <TableLayout
         android:id="@+id/reactantsLayout"
@@ -48,23 +38,33 @@
                 android:text=""
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="?colorAccent"
+                android:textColor="#ff0000"
+                android:textSize="20sp"
                 android:id="@+id/reactant1Coefficient" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="text"
+                android:textSize="20sp"
                 android:text=""
                 android:ems="10"
-                android:textColor="#ffffff"
+                android:textColor="?colorPrimaryText"
                 android:id="@+id/reactant1" />
+
+            <TextView
+                android:text="+"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="?colorPrimaryText" />
 
             <TextView
                 android:text=""
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#ff0000"
+                android:textSize="20sp"
                 android:id="@+id/reactant2Coefficient" />
 
             <EditText
@@ -73,7 +73,8 @@
                 android:inputType="text"
                 android:text=""
                 android:ems="10"
-                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:textColor="?colorPrimaryText"
                 android:id="@+id/reactant2" />
         </TableRow>
 
@@ -106,30 +107,45 @@
             android:gravity="center">
 
             <TextView
-                android:text="TextView"
+                android:text=""
+                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#ff0000"
                 android:id="@+id/product1Coefficient" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:text="Name"
+                android:text=""
+                android:textColor="?colorPrimaryText"
                 android:ems="10"
+                android:textSize="20sp"
                 android:id="@+id/product1" />
 
             <TextView
-                android:text="TextView"
+                android:text="+"
+                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?colorPrimaryText" />
+
+            <TextView
+                android:text=""
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff0000"
+                android:textSize="20sp"
                 android:id="@+id/product2Coefficient" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:text="Name"
+                android:textColor="?colorPrimaryText"
+                android:text=""
+                android:textSize="20sp"
                 android:ems="10"
                 android:id="@+id/product2" />
         </TableRow>
@@ -149,4 +165,16 @@
             android:layout_height="match_parent"
             android:gravity="center"/>
     </TableLayout>
+
+    <Button
+        android:text="Balance"
+        style="@android:style/Widget.Material.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/balanceButton"
+        android:onClick="Balance"
+        android:textColor="?colorPrimaryText"
+        android:layout_below="@+id/arrow"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
