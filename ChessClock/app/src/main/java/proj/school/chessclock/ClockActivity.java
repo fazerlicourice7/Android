@@ -44,7 +44,7 @@ public class ClockActivity extends AppCompatActivity {
         p2Time = ((min * 60) + sec) * SECOND; // needs to be in milliseconds
 
         int incMin = intent.getIntExtra("intMin", 0);
-        int incSec = intent.getIntExtra("incSec", 5);
+        int incSec = intent.getIntExtra("incSec", 0);
 
         increment = ((incMin * 60) + incSec) * SECOND;  // needs to be in milliseconds
 
@@ -124,9 +124,10 @@ public class ClockActivity extends AppCompatActivity {
 
     private boolean playImage = true;
 
-    public void startGame(ImageButton but) {
+    public void playPauseGame(View view) {
+        ImageButton but = (ImageButton)findViewById(R.id.playPause);
         if (playImage) {
-            //but.setImageDrawable(R.drawable.pause);
+            but.setImageDrawable(getDrawable(R.drawable.pause));
             if (p1Turn) {
                 player2Button.setEnabled(false);
                 player1Button.setEnabled(true);
@@ -138,7 +139,7 @@ public class ClockActivity extends AppCompatActivity {
             }
         } else {
             timer.cancel();
-            //but.setImageDrawable(R.drawable.play);
+            but.setImageDrawable(getDrawable(R.drawable.play));
         }
     }
 }
