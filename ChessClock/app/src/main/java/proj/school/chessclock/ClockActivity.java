@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 /**
  * Created by fazer on 10/2/16.
@@ -42,7 +43,7 @@ public class ClockActivity extends AppCompatActivity {
         p1Time = ((min * 60) + sec) * SECOND; // needs to be in milliseconds
         p2Time = ((min * 60) + sec) * SECOND; // needs to be in milliseconds
 
-        int incMin = intent.getIntExtra("incMin", 0);
+        int incMin = intent.getIntExtra("intMin", 0);
         int incSec = intent.getIntExtra("incSec", 5);
 
         increment = ((incMin * 60) + incSec) * SECOND;  // needs to be in milliseconds
@@ -51,22 +52,41 @@ public class ClockActivity extends AppCompatActivity {
         player2Button = (Button) (findViewById(R.id.player2Button));
     }
 
-    private void p1UpdateTime(){
+    private void p1UpdateTime() {
         String time = (p1Time / 60000) + ":" + (p1Time % 60000);
+        if ((p1Time / 60000) < 10) {
+            time = "0" + time;
+        }
+        time = time.substring(0, 5);
         player1Button.setText(time);
     }
 
-    private void p2UpdateTime(){
+    private void p2UpdateTime() {
         String time = (p2Time / 60000) + ":" + (p2Time % 60000);
+        if ((p2Time / 60000) < 10) {
+            time = "0" + time;
+        }
+        time = time.substring(0, 5);
         player2Button.setText(time);
     }
 
-    public void p1ButtonPress(View v) {
-        timer.cancel();
-        p1Time += increment;
-        p1UpdateTime();
-        player2Button.setEnabled(true);
-        player1Button.setEnabled(false);
+    private void startP1Time() {
+        timer = new CountDownTimer(p1Time, SECOND) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                p1Time -= SECOND;
+                p1UpdateTime();
+            }
+
+            @Override
+            public void onFinish() {
+                player1Button.setBackgroundColor(Color.RED);
+                player2Button.setBackgroundColor(Color.GREEN);
+            }
+        }.start();
+    }
+
+    private void startP2Time() {
         timer = new CountDownTimer(p2Time, SECOND) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -82,41 +102,43 @@ public class ClockActivity extends AppCompatActivity {
         }.start();
     }
 
+    public void p1ButtonPress(View v) {
+        timer.cancel();
+        p1Time += increment;
+        p1Turn = false;
+        p1UpdateTime();
+        player2Button.setEnabled(true);
+        player1Button.setEnabled(false);
+        startP2Time();
+    }
+
     public void p2ButtonPress(View v) {
         timer.cancel();
         p2Time += increment;
+        p1Turn = true;
         p2UpdateTime();
         player1Button.setEnabled(true);
         player2Button.setEnabled(false);
-        timer = new CountDownTimer(p1Time, SECOND) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                p1Time -= SECOND;
-                p1UpdateTime();
-            }
-
-            @Override
-            public void onFinish() {
-                player1Button.setBackgroundColor(Color.RED);
-                player2Button.setBackgroundColor(Color.GREEN);
-            }
-        }.start();
+        startP1Time();
     }
 
-    public void startGame(View view) {
-        player2Button.setEnabled(false);
-        timer = new CountDownTimer(p1Time, SECOND) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                p1Time -= SECOND;
-                p1UpdateTime();
-            }
+    private boolean playImage = true;
 
-            @Override
-            public void onFinish() {
-                player1Button.setBackgroundColor(Color.RED);
-                player2Button.setBackgroundColor(Color.GREEN);
+    public void startGame(ImageButton but) {
+        if (playImage) {
+            //but.setImageDrawable(R.drawable.pause);
+            if (p1Turn) {
+                player2Button.setEnabled(false);
+                player1Button.setEnabled(true);
+                startP1Time();
+            } else {
+                player2Button.setEnabled(true);
+                player1Button.setEnabled(false);
+                startP2Time();
             }
-        }.start();
+        } else {
+            timer.cancel();
+            //but.setImageDrawable(R.drawable.play);
+        }
     }
 }

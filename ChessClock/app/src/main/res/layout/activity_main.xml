@@ -202,7 +202,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="86dp"
-android:onClick="startClock"
+        android:onClick="startClock"
         android:id="@+id/startButton"
         android:theme="@android:style/Widget.Material.Button.Colored" />
 
