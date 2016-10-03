@@ -1,5 +1,6 @@
 package proj.school.chessclock;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -119,7 +120,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startClock(View view) {
-
+        Intent startNew = new Intent(MainActivity.this, ClockActivity.class);
+        startNew.putExtra("totalMin", totalMin);
+        startNew.putExtra("totalSec", totalSec);
+        startNew.putExtra("incMin", incrementMin);
+        startNew.putExtra("incSec", incrementSec);
+        startActivity(startNew);
     }
 
 
