@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/player1Button"
-            android:textSize="40sp"
+            android:textSize="60sp"
             android:onClick="p1ButtonPress"
             android:layout_weight="1" />
     </LinearLayout>
@@ -36,7 +36,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="40sp"
+            android:textSize="60sp"
             android:id="@+id/player2Button"
             android:onClick="p2ButtonPress"
             android:layout_weight="1" />
