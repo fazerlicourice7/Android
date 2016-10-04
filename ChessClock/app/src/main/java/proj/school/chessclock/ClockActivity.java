@@ -20,6 +20,7 @@ import android.widget.ImageButton;
 public class ClockActivity extends AppCompatActivity {
 
     private static final int MILLIS = 1000;
+    private static final int MILLISINMINUTE = 60000;
 
     private int p1Time;
     private int p2Time;
@@ -69,12 +70,15 @@ public class ClockActivity extends AppCompatActivity {
     }
 
     private void p1UpdateTime() {
-        String time = (p1Time / 60000) + ":" + (p1Time % 60000);
-        if ((p1Time / 60000) < 10) {
-            time = "0" + time;
+        String time;
+        if ((p1Time % MILLISINMINUTE) < 10 * MILLIS) {
+            Log.d("seconds: ", String.valueOf(p1Time % MILLISINMINUTE));
+            time = (p1Time / MILLISINMINUTE) + ":0" + (p1Time % MILLISINMINUTE);
+        } else {
+            time = (p1Time / MILLISINMINUTE) + ":" + (p1Time % MILLISINMINUTE);
         }
-        if ((p1Time % 60000) < 10) {
-            time = time.substring(0,3) + "0" + time.substring(3);
+        if ((p1Time / MILLISINMINUTE) < 10) {
+            time = "0" + time;
         }
         while (time.length() < 5) {
             time += "0";
@@ -85,18 +89,22 @@ public class ClockActivity extends AppCompatActivity {
     }
 
     private void p2UpdateTime() {
-        String time = (p2Time / 60000) + ":" + (p2Time % 60000);
-        if ((p2Time / 60000) < 10) {
-            time = "0" + time;
+        String time;
+        if ((p2Time % MILLISINMINUTE) < 10 * MILLIS) {
+            Log.d("seconds: ", String.valueOf(p2Time % MILLISINMINUTE));
+            time = (p2Time / MILLISINMINUTE) + ":0" + (p2Time % MILLISINMINUTE);
+        } else {
+            time = (p2Time / MILLISINMINUTE) + ":" + (p2Time % MILLISINMINUTE);
+
         }
-        if ((p2Time % 60000) < 10) {
-            time = time.substring(0,3) + "0" + time.substring(3);
+        if ((p2Time / MILLISINMINUTE) < 10) {
+            time = "0" + time;
         }
         while (time.length() < 5) {
             time += "0";
         }
         time = time.substring(0, 5);
-        Log.d("player1Time", time);
+        Log.d("player2Time", time);
         player2Button.setText(time);
     }
 
@@ -112,6 +120,7 @@ public class ClockActivity extends AppCompatActivity {
             public void onFinish() {
                 p1Time -= MILLIS;
                 p1UpdateTime();
+                end();
                 player1Button.setBackgroundColor(Color.RED);
                 player2Button.setBackgroundColor(Color.GREEN);
             }
@@ -130,6 +139,7 @@ public class ClockActivity extends AppCompatActivity {
             public void onFinish() {
                 p2Time -= MILLIS;
                 p2UpdateTime();
+                end();
                 player2Button.setBackgroundColor(Color.RED);
                 player1Button.setBackgroundColor(Color.GREEN);
             }
@@ -179,5 +189,12 @@ public class ClockActivity extends AppCompatActivity {
             player1Button.setEnabled(false);
             playImage = !playImage;
         }
+    }
+
+    private void end() {
+        player1Button.setEnabled(false);
+        player2Button.setEnabled(false);
+        ImageButton playPause = (ImageButton) findViewById(R.id.playPause);
+        playPause.setEnabled(false);
     }
 }
