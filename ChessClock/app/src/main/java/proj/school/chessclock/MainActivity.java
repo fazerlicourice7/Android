@@ -1,6 +1,8 @@
 package proj.school.chessclock;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,7 +25,11 @@ public class MainActivity extends AppCompatActivity {
     private void updateAll() {
         //update minutes for total time
         EditText totalMins = (EditText) findViewById(R.id.totalMins);
-        totalMins.setText(Integer.toString(totalMin));
+        if (totalMin < 10) {
+            totalMins.setText("0" + Integer.toString(totalMin));
+        } else {
+            totalMins.setText(Integer.toString(totalMin));
+        }
 
         // update the seconds for total time
         EditText totalsecs = (EditText) findViewById(R.id.totalSecs);
@@ -36,11 +42,15 @@ public class MainActivity extends AppCompatActivity {
 
         // update the minutes for increment time
         EditText incremMins = (EditText) findViewById(R.id.incMins);
-        incremMins.setText(Integer.toString(incrementMin));
+        if (incrementMin < 10) {
+            incremMins.setText("0" + Integer.toString(incrementMin));
+        } else {
+            incremMins.setText(Integer.toString(incrementMin));
+        }
 
         // update the seconds for increment time
         EditText incremSecs = (EditText) findViewById(R.id.incSecs);
-        if (totalSec < 10) {
+        if (incrementSec < 10) {
             incremSecs.setText("0" + Integer.toString(incrementSec));
         } else {
             incremSecs.setText(Integer.toString(incrementSec));

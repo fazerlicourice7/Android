@@ -9,6 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <uses-permission android:name="android.permission.WAKE_LOCK" />
+        <uses-permission android:name="android.permission.VIBRATE"/>
 
         <activity android:name=".MainActivity" android:screenOrientation="landscape">
             <intent-filter>
@@ -18,7 +19,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".ClockActivity" android:screenOrientation="landscape">
-
         </activity>
     </application>
 

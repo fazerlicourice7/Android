@@ -1,9 +1,11 @@
 package proj.school.chessclock;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -31,11 +33,15 @@ public class ClockActivity extends AppCompatActivity {
     Button player1Button;
     Button player2Button;
 
+    Vibrator vibrator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_clock);
+
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         Intent intent = getIntent();
         int min = intent.getIntExtra("totalMin", 5);
